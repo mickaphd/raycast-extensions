@@ -1,6 +1,6 @@
 # Kagi News Changelog
 
-## [1.1.0] - {PENDING_APPROVAL}
+## [1.1.0] - {PR_MERGE_DATE}
 
 ### Added
 
