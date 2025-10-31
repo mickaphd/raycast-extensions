@@ -27,10 +27,8 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
   let markdown = `# ${article.title}`;
   let allVisibleText = ""; // Track all visible content for source extraction
 
-  const articleMetadata = article as Record<string, unknown>;
-
-  if (preferences.showPrimaryImage && articleMetadata.primary_image) {
-    const primaryImage = articleMetadata.primary_image as { url?: string; caption?: string };
+  if (preferences.showPrimaryImage && article.primary_image) {
+    const primaryImage = article.primary_image;
     if (primaryImage.url) {
       markdown += `\n\n![Primary Image](${primaryImage.url})`;
       if (primaryImage.caption) {
@@ -50,8 +48,8 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
     });
   }
 
-  if (preferences.showSecondaryImage && articleMetadata.secondary_image) {
-    const secondaryImage = articleMetadata.secondary_image as { url?: string; caption?: string };
+  if (preferences.showSecondaryImage && article.secondary_image) {
+    const secondaryImage = article.secondary_image;
     if (secondaryImage.url) {
       markdown += `\n\n![Secondary Image](${secondaryImage.url})`;
       if (secondaryImage.caption) {
@@ -60,8 +58,8 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
     }
   }
 
-  if (preferences.showPerspectives && articleMetadata.perspectives) {
-    const perspectives = articleMetadata.perspectives as Array<{ text: string }>;
+  if (preferences.showPerspectives && article.perspectives) {
+    const perspectives = article.perspectives;
     if (Array.isArray(perspectives) && perspectives.length > 0) {
       markdown += `\n\n## Perspectives\n`;
       perspectives.forEach((perspective) => {
@@ -71,14 +69,14 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
     }
   }
 
-  if (preferences.showHistoricalBackground && articleMetadata.historical_background) {
-    const historicalBackground = articleMetadata.historical_background as string;
+  if (preferences.showHistoricalBackground && article.historical_background) {
+    const historicalBackground = article.historical_background;
     markdown += `\n\n## Historical Background\n${historicalBackground}`;
     allVisibleText += historicalBackground + " ";
   }
 
-  if (preferences.showTechnicalDetails && articleMetadata.technical_details) {
-    const details = articleMetadata.technical_details as string[];
+  if (preferences.showTechnicalDetails && article.technical_details) {
+    const details = article.technical_details;
     if (Array.isArray(details) && details.length > 0) {
       markdown += `\n\n## Technical Details\n`;
       details.forEach((detail) => {
@@ -88,8 +86,8 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
     }
   }
 
-  if (preferences.showIndustryImpact && articleMetadata.industry_impact) {
-    const impacts = articleMetadata.industry_impact as string[];
+  if (preferences.showIndustryImpact && article.industry_impact) {
+    const impacts = article.industry_impact;
     if (Array.isArray(impacts) && impacts.length > 0) {
       markdown += `\n\n## Industry Impact\n`;
       impacts.forEach((impact) => {
@@ -99,8 +97,8 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
     }
   }
 
-  if (preferences.showTimeline && articleMetadata.timeline) {
-    const timeline = articleMetadata.timeline as Array<{ date: string; content: string }>;
+  if (preferences.showTimeline && article.timeline) {
+    const timeline = article.timeline;
     if (Array.isArray(timeline) && timeline.length > 0) {
       markdown += `\n\n## Timeline\n`;
       timeline.forEach((event) => {
@@ -110,8 +108,8 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
     }
   }
 
-  if (preferences.showInternationalReactions && articleMetadata.international_reactions) {
-    const reactions = articleMetadata.international_reactions as string[];
+  if (preferences.showInternationalReactions && article.international_reactions) {
+    const reactions = article.international_reactions;
     if (Array.isArray(reactions) && reactions.length > 0) {
       markdown += `\n\n## International Reactions\n`;
       reactions.forEach((reaction) => {
